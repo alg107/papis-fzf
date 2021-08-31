@@ -1,0 +1,10 @@
+README.rst
+setup.py
+papis_fzf/__init__.py
+papis_fzf/fzf.py
+papis_fzf.egg-info/PKG-INFO
+papis_fzf.egg-info/SOURCES.txt
+papis_fzf.egg-info/dependency_links.txt
+papis_fzf.egg-info/entry_points.txt
+papis_fzf.egg-info/requires.txt
+papis_fzf.egg-info/top_level.txt

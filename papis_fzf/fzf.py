@@ -1,21 +1,24 @@
 import functools
+import sys
+import os
 #import dmenu
 from pyfzf.pyfzf import FzfPrompt
+from picker import picker as picker2
 
 import papis.pick
 import papis.format
-import os
 
-cols = os.popen('tput cols', 'r').read().strip()
-cols = int(cols)
 
-_fzf_pick = lambda x: FzfPrompt().prompt(x)[0]
+#_fzf_pick = lambda x: FzfPrompt().prompt(x)[0]
+_fzf_pick = lambda x: picker2(x)
 
 
 def pick(options):
-
-    ts = cols-4-20-9
-    fmt = f'{{doc[author]:<20.20}} | {{doc[title]:<{ts}.{ts}}} | {{doc[year]:<4}}'
+    cols = os.popen('tput cols', 'r').read().strip()
+    cols = int(cols)
+    #ts = cols-4-20-9
+    ts = cols-6
+    fmt = f'{{doc[year]:<4}} : {{doc[author]:<{ts-1}.{ts-1}}} \n    | {{doc[title]:<{ts-2}.{ts-2}}}'
 
     if len(options) == 1:
         index = 0
