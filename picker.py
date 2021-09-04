@@ -2,8 +2,6 @@ import curses
 import os
 
 
-f=open("/dev/tty")
-os.dup2(f.fileno(), 0)
 
 def print_lst(stdscr, lst, selected):
     idxs = [i[1] for i in lst]
@@ -74,4 +72,6 @@ def main(stdscr, lst):
         stdscr.addstr(curses.LINES-1,0, "> "+query)
 
 def picker(lst):
+    # f=open("/dev/tty")
+    # os.dup2(f.fileno(), 0)
     return curses.wrapper(main,lst)
