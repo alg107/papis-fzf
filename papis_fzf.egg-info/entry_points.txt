@@ -1,3 +1,0 @@
-[papis.picker]
-fzf = papis_fzf.fzf:Picker
-

@@ -1,3 +1,5 @@
 .github/*
 .readthedocs.yml
 .travis.yml
+__pycache__/*
+*.egg-info/*
