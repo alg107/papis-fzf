@@ -1,7 +1,10 @@
 import curses
 import os
 
-
+alphabet = """
+qwertyuiopasdfghjklzxcvbnm,./;'[]\\1234567890-=
+QWERTYUIOPASDFGHJKLZXCVBNM<>?":{}|+_)(*&^%$#@!~`
+"""
 
 def print_lst(stdscr, lst, selected):
     idxs = [i[1] for i in lst]
@@ -44,11 +47,13 @@ def main(stdscr, lst):
     selected =0 
     print_lst(stdscr,lst,selected)
     stdscr.move(curses.LINES-1,0)
+    stdscr.addstr(curses.LINES-1,0, "> ")
     while True:
         ch = stdscr.getkey()
-        if ch == "KEY_BACKSPACE":
+        print(ch)
+        if ch in ('KEY_BACKSPACE', '\b', '\x7f'):
             if query == "":
-                continue
+                pass
             else:
                 query = query[:-1]
                 y,x = stdscr.getyx()
@@ -64,7 +69,8 @@ def main(stdscr, lst):
             idxs = [i[1] for i in filtered]
             selected = filtered[(idxs.index(selected)-1)%linesused][1]
         else:
-            query += ch
+            if ch in alphabet:
+                query += ch
         stdscr.clear()
         stdscr.refresh()
         filtered,selected = filter_lst(query, lst, selected)
